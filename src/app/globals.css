@@ -1,0 +1,1035 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 0, 0, 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-rgb: 0, 0, 0;
+    --foreground-rgb: 255, 255, 255;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+html, body {
+  overflow: hidden;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth Scroll */
+.smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+}
+
+.smooth-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Navigation Dots */
+.nav-points {
+  display: flex;
+  gap: 1rem;
+  z-index: 50;
+  transition: opacity 0.3s ease;
+}
+
+.nav-point {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: all 0.2s ease-out;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-point:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: scale(1.1);
+}
+
+.nav-point.active {
+  width: 0.6rem;
+  height: 0.6rem;
+  background-color: #FFD700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  transform: scale(1);
+}
+
+/* Base section styles */
+.section-container {
+  height: 100vh;
+  width: 100vw;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Maintain text size */
+.main-title {
+  font-size: 315px !important;
+  line-height: 330px !important;
+  white-space: nowrap;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.left-65{
+  left: 450px;
+}
+
+.right-20{
+  right: 250px;
+}
+
+/* Cloud Movement Animations */
+@keyframes moveLeftCloud {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(-20px) translateY(-5px);
+  }
+  50% {
+    transform: translateX(-10px) translateY(-10px);
+  }
+  75% {
+    transform: translateX(10px) translateY(-5px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes moveRightCloud {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(20px) translateY(-10px);
+  }
+  50% {
+    transform: translateX(10px) translateY(-15px);
+  }
+  75% {
+    transform: translateX(-10px) translateY(-10px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cloud-left {
+  opacity: 0;
+}
+
+.cloud-left.animated {
+  animation: fadeUp 2s ease-out forwards, moveLeftCloud 8s ease-in-out infinite 2s;
+  animation-delay: 2s;
+}
+
+.cloud-right {
+  opacity: 0;
+}
+
+.cloud-right.animated {
+  animation: fadeUp 2s ease-out forwards, moveRightCloud 8s ease-in-out infinite 2s;
+  animation-delay: 2s;
+}
+
+.cloud-left:hover, .cloud-right:hover {
+  transform: scale(1.1);
+}
+
+/* Logo positioning */
+.logo-container {
+  position: fixed;
+  top: 3vh;
+  left: 3vw;
+  z-index: 50;
+  width: 4vw;
+  height: 4vw;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+/* Wave Text Animation */
+@keyframes wave-animation {
+  0% {
+    background-position: 0 bottom;
+  }
+  100% {
+    background-position: 1400px bottom;
+  }
+}
+
+@keyframes loading-animation {
+  0% {
+    background-size: 1400px 0px;
+  }
+  100% {
+    background-size: 1400px 1400px;
+  }
+}
+
+.wave-text {
+  background-image: url("https://i.imgur.com/uFpLbYt.png");
+  -moz-background-clip: text;
+  -o-background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 0px rgba(255, 255, 255, 0.06);
+  animation: wave-animation 1s infinite linear, loading-animation 5s linear forwards;
+  background-size: 200px 100px;
+  background-repeat: repeat-x;
+  opacity: 1;
+}
+
+/* Milk Bottle Animation */
+.milk-bottle-container {
+  --speed: 4s;
+  animation: none !important;
+  transform-origin: bottom;
+}
+
+.milk-bottle-container > * {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  transition: all var(--speed) ease-in-out;
+}
+
+.milk-bottle-container.animated > * {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Cow Image Animation */
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.cow-container {
+  opacity: 0;
+}
+
+.cow-container.animated {
+  animation: fadeInRight 2s ease-out forwards;
+  animation-delay: 2s; /* Delay after bottle animation (4s) + 1s extra */
+}
+
+/* Section 1 Bottle Animation */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.section1-bottle {
+  opacity: 0;
+}
+
+.section1-bottle.animated {
+  animation: fadeInScale 1.5s ease-out forwards;
+}
+
+.section1-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+/* Section 1 Cloud Positions */
+.section1-cloud-right {
+  position: absolute;
+  top: 15%;
+  right: -5%;
+  transform: scale(0);
+  opacity: 0;
+  padding-right: 370px;
+}
+
+.section1-cloud-left {
+  position: absolute;
+  top: 52%;
+  left: -2%;
+  transform: scale(0);
+  opacity: 0;
+  padding-left: 400px;
+}
+
+.section1-cloud-right.animated {
+  animation: fadeInScale 1.5s ease-out forwards, moveRightCloud 8s ease-in-out infinite 1.5s;
+}
+
+.section1-cloud-left.animated {
+  animation: fadeInScale 1.5s ease-out forwards, moveLeftCloud 8s ease-in-out infinite 1.5s;
+}
+
+.nav-bottle {
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-link {
+  transition: all 0.3s ease-in-out;
+  opacity: 0.9;
+  transition-property: transform, opacity, color;
+  transition-duration: 600ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+.nav-link:hover {
+  opacity: 1;
+  transform: translateX(20px);
+}
+
+/* Navbar Animation */
+.navbar-hidden {
+  opacity: 0;
+  transform: translateX(50px);
+  pointer-events: none;
+}
+
+.navbar-visible {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.nav-bottle {
+  opacity: 0;
+  transform: translateX(50px);
+  animation: fadeInNavBottle 0.5s ease-out forwards;
+  animation-delay: 6s; /* After home animations (5s) + 1s extra */
+}
+
+@keyframes fadeInNavBottle {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Navigation Line Animation */
+@keyframes fadeInLine {
+  from {
+    opacity: 0;
+    transform: scaleX(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1) translateY(0);
+  }
+}
+
+.nav-line {
+  animation: fadeInLine 1s ease-out forwards;
+  transform-origin: center;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.nav-line.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Food Image Animation */
+.food-container {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.food-container.animated {
+  animation: fadeInFood 1s ease-out forwards;
+  animation-delay: 1s;
+}
+
+@keyframes fadeInFood {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Sustain Image Animation */
+.sustain-container {
+  opacity: 0;
+  transform: translateY(30px);
+  height: 250px;
+  width: 250px;
+}
+
+.sustain-container.animated {
+  animation: fadeInSustain 1s ease-out forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes fadeInSustain {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Products Image Animation */
+.products-container {
+  opacity: 0;
+  transform: translateY(-30px);
+  height: 320px;
+  width: 320px;
+}
+
+.products-container.animated {
+  animation: fadeInProducts 1s ease-out forwards;
+  animation-delay: 1.8s;
+}
+
+@keyframes fadeInProducts {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dairy Image Animation */
+.dairy-container {
+  opacity: 0;
+  transform: translateX(-30px);
+  height: 270px;
+  width: 270px;
+}
+
+.dairy-container.animated {
+  animation: fadeInDairy 1s ease-out forwards;
+  animation-delay: 2s;
+}
+
+@keyframes fadeInDairy {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* High Image Animation */
+.high-container {
+  opacity: 0;
+  transform: translateX(-30px);
+  height: 300px;
+  width: 300px;
+}
+
+.high-container.animated {
+  animation: fadeInHigh 1s ease-out forwards;
+  animation-delay: 2.2s;
+}
+
+@keyframes fadeInHigh {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Adult Image Animation */
+.adult-container {
+  opacity: 0;
+  transform: translateX(30px);
+  height: 350px;
+  width: 350px;
+}
+
+.adult-container.animated {
+  animation: fadeInAdult 1s ease-out forwards;
+  animation-delay: 1.8s;
+}
+
+@keyframes fadeInAdult {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animal Image Animation */
+.animal-container {
+  opacity: 0;
+  transform: translateY(30px);
+  height: 300px;
+  width: 300px;
+}
+
+.animal-container.animated {
+  animation: fadeInAnimal 1s ease-out forwards;
+  animation-delay: 2s;
+}
+
+@keyframes fadeInAnimal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover Glow Effect for Section 1 Images */
+.sustain-container,
+.adult-container,
+.products-container,
+.dairy-container,
+.high-container,
+.animal-container,
+.food-container {
+  transition: all 0.3s ease-in-out;
+}
+
+.sustain-container:hover,
+.adult-container:hover,
+.products-container:hover,
+.dairy-container:hover,
+.high-container:hover,
+.animal-container:hover,
+.food-container:hover {
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8)) brightness(1.2);
+  transform: scale(1.05);
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Additional glow variations for different images */
+.sustain-container:hover {
+  filter: drop-shadow(0 0 35px rgba(173, 216, 230, 0.9)) brightness(1.3);
+}
+
+.adult-container:hover {
+  filter: drop-shadow(0 0 35px rgba(255, 223, 186, 0.9)) brightness(1.3);
+}
+
+.products-container:hover {
+  filter: drop-shadow(0 0 35px rgba(144, 238, 144, 0.9)) brightness(1.3);
+}
+
+.dairy-container:hover {
+  filter: drop-shadow(0 0 35px rgba(255, 182, 193, 0.9)) brightness(1.3);
+}
+
+.high-container:hover {
+  filter: drop-shadow(0 0 35px rgba(230, 230, 250, 0.9)) brightness(1.3);
+}
+
+.animal-container:hover {
+  filter: drop-shadow(0 0 35px rgba(255, 218, 185, 0.9)) brightness(1.3);
+}
+
+.food-container:hover {
+  filter: drop-shadow(0 0 35px rgba(255, 255, 224, 0.9)) brightness(1.3);
+}
+
+/* Navigation Points */
+.nav-points {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  z-index: 50;
+  transition: opacity 0.3s ease;
+}
+
+.nav-point {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  transition: all 0.2s ease-out;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-point:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: scale(1.1);
+}
+
+.nav-point.active {
+  width: 0.6rem;
+  height: 0.6rem;
+  background-color: #FFD700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  transform: scale(1);
+}
+
+@keyframes floatArrow {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -10px);
+  }
+}
+
+/* Section 2 Left Image */
+.section2-left img {
+}
+
+/* Navigation Line Animation */
+@keyframes fadeInLine {
+  from {
+    opacity: 0;
+    transform: scaleX(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1) translateY(0);
+  }
+}
+
+.nav-line {
+  animation: fadeInLine 1s ease-out forwards;
+  transform-origin: center;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.nav-line.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Food Image Animation */
+.food-container {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.food-container.animated {
+  animation: fadeInFood 1s ease-out forwards;
+  animation-delay: 1s;
+}
+
+@keyframes fadeInFood {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Sustain Image Animation */
+.sustain-container {
+  opacity: 0;
+  transform: translateY(30px);
+  height: 250px;
+  width: 250px;
+}
+
+.sustain-container.animated {
+  animation: fadeInSustain 1s ease-out forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes fadeInSustain {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Products Image Animation */
+.products-container {
+  opacity: 0;
+  transform: translateY(-30px);
+  height: 320px;
+  width: 320px;
+}
+
+.products-container.animated {
+  animation: fadeInProducts 1s ease-out forwards;
+  animation-delay: 1.8s;
+}
+
+@keyframes fadeInProducts {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dairy Image Animation */
+.dairy-container {
+  opacity: 0;
+  transform: translateX(-30px);
+  height: 270px;
+  width: 270px;
+}
+
+.dairy-container.animated {
+  animation: fadeInDairy 1s ease-out forwards;
+  animation-delay: 2s;
+}
+
+@keyframes fadeInDairy {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* High Image Animation */
+.high-container {
+  opacity: 0;
+  transform: translateX(-30px);
+  height: 300px;
+  width: 300px;
+}
+
+.high-container.animated {
+  animation: fadeInHigh 1s ease-out forwards;
+  animation-delay: 2.2s;
+}
+
+@keyframes fadeInHigh {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Adult Image Animation */
+.adult-container {
+  opacity: 0;
+  transform: translateX(30px);
+  height: 350px;
+  width: 350px;
+}
+
+.adult-container.animated {
+  animation: fadeInAdult 1s ease-out forwards;
+  animation-delay: 1.8s;
+}
+
+@keyframes fadeInAdult {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animal Image Animation */
+.animal-container {
+  opacity: 0;
+  transform: translateY(30px);
+  height: 300px;
+  width: 300px;
+}
+
+.animal-container.animated {
+  animation: fadeInAnimal 1s ease-out forwards;
+  animation-delay: 2s;
+}
+
+@keyframes fadeInAnimal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover Glow Effect for Section 1 Images */
+.sustain-container,
+.adult-container,
+.products-container,
+.dairy-container,
+.high-container,
+.animal-container,
+.food-container {
+  transition: all 0.3s ease-in-out;
+}
+
+.sustain-container:hover,
+.adult-container:hover,
+.products-container:hover,
+.dairy-container:hover,
+.high-container:hover,
+.animal-container:hover,
+.food-container:hover {
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8)) brightness(1.2);
+  transform: scale(1.05);
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Additional glow variations for different images */
+.sustain-container:hover {
+  filter: drop-shadow(0 0 35px rgba(173, 216, 230, 0.9)) brightness(1.3);
+}
+
+.adult-container:hover {
+  filter: drop-shadow(0 0 35px rgba(255, 223, 186, 0.9)) brightness(1.3);
+}
+
+.products-container:hover {
+  filter: drop-shadow(0 0 35px rgba(144, 238, 144, 0.9)) brightness(1.3);
+}
+
+.dairy-container:hover {
+  filter: drop-shadow(0 0 35px rgba(255, 182, 193, 0.9)) brightness(1.3);
+}
+
+.high-container:hover {
+  filter: drop-shadow(0 0 35px rgba(230, 230, 250, 0.9)) brightness(1.3);
+}
+
+.animal-container:hover {
+  filter: drop-shadow(0 0 35px rgba(255, 218, 185, 0.9)) brightness(1.3);
+}
+
+.food-container:hover {
+  filter: drop-shadow(0 0 35px rgba(255, 255, 224, 0.9)) brightness(1.3);
+}
+
+/* Book Image Hover Effect */
+.book-hover {
+  transition: all 0.3s ease-in-out;
+}
+
+.book-hover:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+/* Smooth Scroll */
+.smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+}
+
+.smooth-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Book Page Turn Animation */
+.page-turn {
+  transition: transform 0.6s ease-in-out;
+  transform-origin: left;
+}
+
+.page-turn.turning {
+  transform: rotateY(-180deg);
+}
+
+.flip-container {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-animation {
+  transition: transform 0.6s ease-in-out;
+}
+
+.flip-animation.flipped {
+  transform: rotateY(180deg);
+}
+
+.section4-cloud-left.animated {
+  animation: fadeInScale 1.5s ease-out forwards, moveLeftCloud 8s ease-in-out infinite 1.5s;
+}
+
+/* Subtle Float Animations for Section 5 */
+@keyframes subtleFloatLeft {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(-5px) translateY(-5px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+@keyframes subtleFloatRight {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(5px) translateY(-5px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+.cloud-left {
+  opacity: 0;
+}
+
+.cloud-left.animated {
+  animation: fadeUp 2s ease-out forwards, subtleFloatLeft 4s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.cloud-right {
+  opacity: 0;
+}
+
+.cloud-right.animated {
+  animation: fadeUp 2s ease-out forwards, subtleFloatRight 4s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.cloud-left:hover, .cloud-right:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+/* Bottle nav hover effect */
+.nav-bottle {
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.nav-bottle:hover {
+  transform: rotate(-40deg);
+}
+
+.nav-bottle:hover img {
+  transform: rotate(-40deg);
+}
+
+.nav-bottle img {
+  transition: transform 0.6s ease;
+  transform-origin: center;
+}
+
+/* Modal transitions */
+.transition-transform {
+  transition-property: transform, opacity;
+  transition-timing-function: ease-out;
+}
+
+.duration-600 {
+  transition-duration: 600ms;
+}
+
+/* Flip Animation */
+.overflow-hidden {
+  perspective: 1000px;
+}
+
+.overflow-hidden img {
+  backface-visibility: visible;
+  transform-style: preserve-3d;
+}
