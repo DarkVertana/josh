@@ -1164,7 +1164,7 @@ export default function Home() {
               </>
             )}
             {/* Navigation Line for each section except home */}
-            <div className="absolute bottom-[8.6%] left-1/2 transform -translate-x-1/2 w-[1728px]">
+            <div className="absolute bottom-[50%] left-1/2 transform -translate-x-1/2 w-[1728px]">
               <Image
                 src="/nav-line.svg"
                 alt="Navigation Line"
