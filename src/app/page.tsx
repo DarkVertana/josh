@@ -1163,21 +1163,20 @@ export default function Home() {
                 </div>
               </>
             )}
-            {/* Navigation Line for each section except home */}
-            <div className="absolute bottom-[50%] left-1/2 transform -translate-x-1/2 w-[1728px]">
-              <Image
-                src="/nav-line.svg"
-                alt="Navigation Line"
-                width={1728}
-                height={6}
-                style={{ 
-                  objectFit: 'contain',
-                  width: '100%',
-                  height: 'auto',
-                }}
-                priority
-              />
-            </div>
+            <div className="absolute bottom-[75px] left-1/2 transform -translate-x-1/2 w-[1728px]">
+            <Image
+              src="/nav-line.svg"
+              alt="Navigation Line"
+              width={1728}
+              height={6}
+              style={{ 
+                objectFit: 'contain',
+                width: '100%',
+                height: 'auto',
+              }}
+              priority
+            />
+          </div>
           </section>
         ))}
         
