@@ -589,8 +589,9 @@ export default function Home() {
         </section>
 
         {/* Section 3 */}
-        <section className="section-container h-screen w-screen flex-shrink-0 snap-start relative">
-          <div className="flex h-full w-full items-center justify-center">
+        <section className="section-container h-screen w-screen flex-shrink-0 snap-start flex items-center justify-center relative">
+          {/* Content container */}
+          <div className="w-full h-full relative">
             {/* Tube Image */}
             <div className="absolute top-[-10%] left-1/2 transform -translate-x-1/2">
               <Image
@@ -649,8 +650,8 @@ export default function Home() {
                   height={200}
                   style={{ 
                     objectFit: 'cover',
-                    width: '190px',
-                    height: '150px',
+                    width: '100px',
+                    height: '100px',
                   }}
                   priority
                 />
@@ -797,11 +798,11 @@ export default function Home() {
             </div>
 
             {/* Bottom Line for Section 3 */}
-            <div className="absolute bottom-[69] left-1/2 transform -translate-x-1/2 w-[1728px]">
+            <div className="absolute bottom-[63px] left-1/2 transform -translate-x-1/2 w-[1728px] z-[1]">
               <Image
                 src="/nav-line.svg"
                 alt="Section 3 Line"
-                width={1028}
+                width={1728}
                 height={6}
                 style={{ 
                   objectFit: 'contain',
